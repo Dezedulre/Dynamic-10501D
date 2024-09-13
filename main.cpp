@@ -1,18 +1,17 @@
 #include "main.h"
 
-///o
-//
+/////
 // For installation, upgrading, documentations, and tutorials, check out our website!
 // https://ez-robotics.github.io/EZ-Template/
 /////
 
-// Chassis constructora
+// Chassis constructor
 ez::Drive chassis(
     // These are your drive motors, the first motor is used for sensing!
-    {1,2},     // Left Chassis Ports (negative port will reverse it!)
-    {3,4},  // Right Chassis Ports (negative port will reverse it!)
+    {-19, -20},     // Left Chassis Ports (negative port will reverse it!)
+    {11, 12},  // Right Chassis Ports (negative port will reverse it!)
 
-    7,      // IMU Port
+    10,      // IMU Port
     2.75,  // Wheel Diameter (Remember, 4" wheels without screw holes are actually 4.125!)
     450);   // Wheel RPM
 
@@ -20,9 +19,6 @@ ez::Drive chassis(
  * Runs initialization code. This occurs as soon as the program is started.
  *
  * All other competition modes are blocked by initialize; it is recommended
- 
- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
- 
  * to keep execution time for this mode under a few seconds.
  */
 void initialize() {
@@ -145,17 +141,27 @@ void opcontrol() {
     //chassis.opcontrol_tank();  // Tank control
     chassis.opcontrol_arcade_standard(ez::SPLIT);   // Standard split arcade
     // chassis.opcontrol_arcade_standard(ez::SINGLE);  // Standard single arcade
-    // chassis.opcontrol_arcade_flipped(ez::SPLIT);    // Flipped split arcade
+    //chassis.opcontrol_arcade_flipped(ez::SPLIT);    // Flipped split arcade
     // chassis.opcontrol_arcade_flipped(ez::SINGLE);   // Flipped single arcade
+
+    // . . .
+    // Put more user control code here!
+    // . . .
+
     if(master.get_digital(DIGITAL_L1)){
-       setIntake(127);
+      setIntake(127);
     }
-    else if {master.get_digital(DIGITAL_L2)){
-    setIntake(-127)
+    else if(master.get_digital(DIGITAL_L2)){
+      setIntake(-127);
     }
     else{
       setIntake(0);
     }
-    pros::delay(ez::util::DELAY_TIME);
+   // setIntake(master.get_digital(DIGITAL_L1)-master.get_digital(DIGITAL_L2)*127);
+
+    if(master.get_digital_new_press(DIGITAL_X)){
+      clamp1.toggle();
+    }
+    pros::delay(ez::util::DELAY_TIME);  // This is used for timer calculations!  Keep this ez::util::DELAY_TIME
   }
 }

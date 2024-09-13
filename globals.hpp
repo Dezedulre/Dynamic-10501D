@@ -1,8 +1,8 @@
 #include "main.h"
 
 //motors
-extern pros::Motor intake11W;
-extern pros::MotorGroup intake5W
+//extern pros::Motor intake11W;
+extern pros::MotorGroup intake5W;
 
-//peumatics
-
+//pneumatics
+extern pros::adi::Pneumatics clamp1;

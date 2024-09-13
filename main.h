@@ -46,10 +46,8 @@
 // More includes here...
 #include "autons.hpp"
 #include "subsystems.hpp"
-#include "globles.hpp"
+#include "globals.hpp"
 #include "helpers.hpp"
-
-
 
 /**
  * If you find doing pros::Motor() to be tedious and you'd prefer just to do
